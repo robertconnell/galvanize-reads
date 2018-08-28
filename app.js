@@ -22,13 +22,12 @@ app.get("/books", (req, res, next) => {
     queries
         .listBooks()
         .then(authors_books => {
-            let authors = queries.listBooksAuthors();
-            console.log({ authors });
-
-            res.render("books", {
-                authors_books: authors_books,
-                authors: authors
-            });
+            queries.listBooksAuthors().then(joined =>
+                res.render("books", {
+                    authors_books: authors_books,
+                    joined
+                })
+            );
         })
         .catch(next);
 });
@@ -36,7 +35,9 @@ app.get("/authors", (req, res, next) => {
     queries
         .listAuthors()
         .then(authors => {
-            res.render("authors", { authors });
+            queries
+                .listBooksAuthors()
+                .then(joined => res.render("authors", { authors, joined }));
         })
         .catch(next);
 });

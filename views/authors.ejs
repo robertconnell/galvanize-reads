@@ -5,7 +5,7 @@
     <br>
     <br>
     <div>
-        <div class="ui huge header">List of Authors!</div>
+        <div class="ui-huge-header">Author List</div>
         <h4>Total Authors:
             <%= authors.length%>
         </h4>
@@ -21,16 +21,17 @@
                                 <%=author.FirstName%>
                                     <%=author.LastName%>
                             </h2>
-                            <!-- <% for(let i=0; i < authors.length; i++){ %>
-                                <% if(author.authorTitle === authors[i].title){%>
+                            <h3>Author Of:</h3>
+                            <% for(let i=0; i < joined.length; i++){ %>
+                                <% if(author.FirstName === joined[i].first_name){%>
                                     <h4>
-                                        <%=authors[i].first_name%>
-                                            <%=authors[i].last_name%>
+                                        <%=joined[i].title%>
                                     </h4>
                                     <%} %>
-                                        <%}%> -->
-                            <span><%= author.Biography %></span>
-                            <a href="/authors/<%= author._id %>">Read More</a>
+                                        <%}%>
+                                            <br>
+                                            <span><%= author.Biography %></span>
+                                            <a href="/authors/<%= author._id %>">Read More</a>
                         </div>
                     </div>
                     <% }) %>
