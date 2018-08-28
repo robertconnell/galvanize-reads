@@ -1,0 +1,46 @@
+<% include ./partials/header %>
+
+
+    <br>
+    <br>
+    <br>
+    <div>
+        <div class="ui huge header">List of Books!</div>
+        <h4>Total Books:
+            <%= authors_books.length%>
+        </h4>
+        <div>
+            <div>
+                <% authors_books.forEach(function(book){ %>
+                    <div class="book-card">
+                        <div class="book-image">
+                            <img id="book-card-image" class="" src='<%= book.BookCoverURL %>'>
+                        </div>
+                        <div class="book-info">
+                            <h2>
+                                <%=book.BookTitle%>
+                            </h2>
+                            <% for(let i=0; i < authors.length; i++){ %>
+                                <% if(book.BookTitle === authors[i].title){%>
+                                    <h4>
+                                        <%=authors[i].first_name%>
+                                            <%=authors[i].last_name%>
+                                    </h4>
+                                    <%} %>
+                                        <%}%>
+                                            <h5>
+                                                <%=book.BookGenre%>
+                                            </h5>
+                                            <span><%= book.BookDescription %></span>
+                                            <a href="/books/<%= book._id %>">Read More</a>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <% include ./partials/footer %>
